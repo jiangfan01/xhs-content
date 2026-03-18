@@ -1,0 +1,270 @@
+@import "tailwindcss";
+
+/* ============================================
+   100 CITY 全局主题变量定义
+   ============================================
+   使用方式：
+   1. 在组件中使用 CSS 变量: color: var(--text-primary);
+   2. 主题切换通过 next-themes 自动管理 html.dark 类名
+   ============================================ */
+
+/* ============================================
+   亮色主题 (Light Theme) - 默认
+   ============================================ */
+:root {
+  /* ---------- 背景色 ---------- */
+  --bg-default: #f2f4f8;
+  --bg-card: #ffffff;
+  --bg-subtle: #f9fafb;
+  --bg-mask: rgba(0, 0, 0, 0.45);
+  --overlay-gradient-end: rgba(0, 0, 0, 0.15);
+  --bg-gradient-overlay:
+    radial-gradient(circle at 20% 20%, rgba(108, 92, 231, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(0, 206, 201, 0.1) 0%, transparent 40%);
+
+  /* ---------- 边框色 ---------- */
+  --border-light: #eeeeee;
+  --border-default: #d1d5db;
+
+  /* ---------- 文字色 ---------- */
+  --text-heading: #1f2937;
+  --text-primary: #374151;
+  --text-secondary: #4b5563;
+  --text-muted: #6b7280;
+  --text-placeholder: #9ca3af;
+  --text-disabled: #9ca3af;
+  --text-inverse: #ffffff;
+
+  /* ---------- 图标色 ---------- */
+  --icon-default: #4b5563;
+  --icon-muted: #6b7280;
+  --icon-active: #7c3aed;
+
+  /* ---------- 品牌色 / 主题色 ---------- */
+  --brand-primary-start: #6f52ff;
+  --brand-primary-end: #8b5cf6;
+  --brand-primary-solid: #7c3aed;
+  --brand-primary-light: rgba(237, 233, 254, 0.7);
+  --brand-primary-hover: #6d28d9;
+  --brand-gradient: linear-gradient(to right, #6f52ff, #8b5cf6);
+  --brand-accent-start: #00c2b6;
+  --brand-accent-end: #00d0c1;
+  --brand-accent-solid: #00b8ad;
+  --brand-accent-light: #ecfdf5;
+  --brand-accent-hover: #00a39a;
+
+  /* ---------- 功能色 ---------- */
+  --color-success-light: #d1fae5;
+  --color-success: #059669;
+  --color-success-dark: #047857;
+  --color-warning-light: #fef3c7;
+  --color-warning: #d97706;
+  --color-warning-dark: #b45309;
+  --color-danger-light: #fee2e2;
+  --color-danger: #dc2626;
+  --color-danger-dark: #b91c1c;
+  --color-price: #FFCD77;
+
+  /* ---------- 交互状态色 ---------- */
+  --interactive-default: #f3f4f6;
+  --interactive-hover: #e5e7eb;
+  --interactive-text: #374151;
+  --state-disabled-bg: #f9fafb;
+  --state-disabled-text: #d1d5db;
+  --state-disabled-border: #e5e7eb;
+
+  /* ---------- 阴影 ---------- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-xl: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --shadow-brand-focus: 0 0 0 3px rgba(124, 58, 237, 0.4);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-popup: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --brand-glow: rgba(124, 58, 237, 0.15);
+  --shadow-color: rgba(0, 0, 0, 0.08);
+  --scrollbar-thumb: rgba(124, 58, 237, 0.08);
+  --scrollbar-thumb-hover: rgba(124, 58, 237, 0.15);
+
+  /* ---------- 动画效果色 ---------- */
+  --shine-color-light: rgba(255, 255, 255, 0.4);
+  --shine-color-medium: rgba(255, 255, 255, 0.6);
+
+  /* ---------- 工作流编辑器标签色 ---------- */
+  --tag-blogger-bg: #D7E5FF;
+  --tag-blogger-text: #1E40AF;
+  --tag-template-bg: #D7E5FF;
+  --tag-template-text: #1E40AF;
+  --tag-audio-bg: #E0F2FE;
+  --tag-audio-text: #0369A1;
+  --tag-video-bg: #FEF3C7;
+  --tag-video-text: #92400E;
+  --tag-predecessor-bg: #D7E5FF;
+  --tag-predecessor-text: #1E40AF;
+  --tag-input-bg: #D7E5FF;
+  --tag-input-text: #1E40AF;
+  --tag-mention-bg: #E5E7EB;
+  --tag-mention-text: #6B7280;
+
+  /* ---------- 圆角 ---------- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ---------- 过渡 ---------- */
+  --transition-fast: 150ms ease;
+  --transition-normal: 200ms ease;
+  --transition-slow: 300ms ease;
+
+  /* ---------- 字体大小 ---------- */
+  --font-2xs: 0.625rem;
+  --font-xs: 0.75rem;
+  --font-sm: 0.8125rem;
+  --font-base: 0.875rem;
+  --font-md: 0.9375rem;
+  --font-lg: 1rem;
+  --font-xl: 1.125rem;
+  --font-2xl: 1.25rem;
+  --font-3xl: 1.5rem;
+  --font-4xl: 1.75rem;
+  --font-5xl: 2rem;
+  --font-stat-sm: 1.125rem;
+  --font-stat-md: 1.5rem;
+  --font-stat-lg: 2rem;
+}
+
+/* 桌面端字体大小覆盖 */
+@media (min-width: 768px) {
+  :root {
+    --font-stat-sm: 1.5rem;
+    --font-stat-md: 2rem;
+    --font-stat-lg: 2.5rem;
+  }
+}
+
+/* ============================================
+   高级感暗色主题 (Refined Dark Theme)
+   ============================================ */
+.dark,
+[data-theme="dark"] {
+  --bg-default: #0d0d0d;
+  --bg-card: #121314;
+  --bg-subtle: #1c1c21;
+  --bg-mask: rgba(0, 0, 0, 0.7);
+  --overlay-gradient-end: rgba(255, 255, 255, 0.2);
+  --bg-gradient-overlay:
+    radial-gradient(circle at 10% 10%, rgba(111, 82, 255, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 90%, rgba(0, 194, 182, 0.05) 0%, transparent 40%);
+
+  --border-light: rgba(255, 255, 255, 0.06);
+  --border-default: #191a1d;
+
+  --text-heading: #ffffff;
+  --text-primary: #F9FBFC;
+  --text-secondary: #B6BBC2;
+  --text-muted: #71717a;
+  --text-placeholder: #52525b;
+  --text-disabled: #3f3f46;
+  --text-inverse: #f4f4f5;
+
+  --icon-default: #d4d4d8;
+  --icon-muted: #a1a1aa;
+  --icon-active: #a78bfa;
+
+  --brand-primary-start: #7c66ff;
+  --brand-primary-end: #a78bfa;
+  --brand-primary-solid: #8b5cf6;
+  --brand-primary-light: rgba(139, 92, 246, 0.15);
+  --brand-primary-hover: #9d7cff;
+  --brand-gradient: linear-gradient(135deg, #7c66ff, #a78bfa);
+  --brand-accent-start: #2dd4bf;
+  --brand-accent-end: #34d399;
+  --brand-accent-solid: #14b8a6;
+  --brand-accent-light: rgba(20, 184, 166, 0.15);
+  --brand-accent-hover: #2ee2cc;
+
+  --color-success-light: rgba(34, 197, 94, 0.1);
+  --color-success: #4ade80;
+  --color-success-dark: #22c55e;
+  --color-warning-light: rgba(251, 191, 36, 0.1);
+  --color-warning: #fbbf24;
+  --color-warning-dark: #f59e0b;
+  --color-danger-light: rgba(248, 113, 113, 0.1);
+  --color-danger: #f87171;
+  --color-danger-dark: #ef4444;
+  --color-price: #FFCD77;
+
+  --interactive-default: #1c1c21;
+  --interactive-hover: #27272e;
+  --interactive-text: #ffffff;
+  --state-disabled-bg: #151518;
+  --state-disabled-text: #3f3f46;
+  --state-disabled-border: rgba(255, 255, 255, 0.06);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+  --shadow-brand-focus: 0 0 0 3px rgba(139, 92, 246, 0.4);
+  --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 2px 10px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 12px 30px rgba(0, 0, 0, 0.6);
+  --shadow-popup: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 8px 20px rgba(0, 0, 0, 0.5);
+  --brand-glow: rgba(139, 92, 246, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --scrollbar-thumb: rgba(139, 92, 246, 0.12);
+  --scrollbar-thumb-hover: rgba(139, 92, 246, 0.2);
+
+  --shine-color-light: rgba(139, 92, 246, 0.15);
+  --shine-color-medium: rgba(139, 92, 246, 0.25);
+
+  --tag-blogger-bg: rgba(59, 130, 246, 0.2);
+  --tag-blogger-text: #93C5FD;
+  --tag-template-bg: rgba(59, 130, 246, 0.2);
+  --tag-template-text: #93C5FD;
+  --tag-audio-bg: rgba(14, 165, 233, 0.2);
+  --tag-audio-text: #7DD3FC;
+  --tag-video-bg: rgba(245, 158, 11, 0.2);
+  --tag-video-text: #FCD34D;
+  --tag-predecessor-bg: rgba(59, 130, 246, 0.2);
+  --tag-predecessor-text: #93C5FD;
+  --tag-input-bg: rgba(59, 130, 246, 0.2);
+  --tag-input-text: #93C5FD;
+  --tag-mention-bg: rgba(107, 114, 128, 0.3);
+  --tag-mention-text: #9CA3AF;
+}
+
+/* ============================================
+   全局基础样式
+   ============================================ */
+body {
+  margin: 0;
+  background-color: var(--bg-default);
+  color: var(--text-primary);
+  font-size: var(--font-base);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
