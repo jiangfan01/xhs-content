@@ -74,7 +74,7 @@
   --color-danger-dark: #b91c1c;
 
   // 金额/价格色（金黄色）
-  --color-price: #FFCD77;
+  --color-price: #ffcd77;
 
   // ---------- 交互状态色 ----------
   --interactive-default: #f3f4f6; // 按钮默认背景
@@ -113,26 +113,26 @@
 
   // ---------- 工作流编辑器标签色 ----------
   // 博主标签
-  --tag-blogger-bg: #D7E5FF;
-  --tag-blogger-text: #1E40AF;
+  --tag-blogger-bg: #d7e5ff;
+  --tag-blogger-text: #1e40af;
   // 模板标签
-  --tag-template-bg: #D7E5FF;
-  --tag-template-text: #1E40AF;
+  --tag-template-bg: #d7e5ff;
+  --tag-template-text: #1e40af;
   // 音色标签
-  --tag-audio-bg: #E0F2FE;
-  --tag-audio-text: #0369A1;
+  --tag-audio-bg: #e0f2fe;
+  --tag-audio-text: #0369a1;
   // 数字人标签
-  --tag-video-bg: #FEF3C7;
-  --tag-video-text: #92400E;
+  --tag-video-bg: #fef3c7;
+  --tag-video-text: #92400e;
   // 前置节点标签
-  --tag-predecessor-bg: #D7E5FF;
-  --tag-predecessor-text: #1E40AF;
+  --tag-predecessor-bg: #d7e5ff;
+  --tag-predecessor-text: #1e40af;
   // 输入框标签
-  --tag-input-bg: #D7E5FF;
-  --tag-input-text: #1E40AF;
+  --tag-input-bg: #d7e5ff;
+  --tag-input-text: #1e40af;
   // 选择中标签（@触发）
-  --tag-mention-bg: #E5E7EB;
-  --tag-mention-text: #6B7280;
+  --tag-mention-bg: #e5e7eb;
+  --tag-mention-text: #6b7280;
 
   // ---------- 圆角 ----------
   --radius-sm: 4px;
@@ -150,22 +150,22 @@
   // ---------- 字体大小 (rem 基于 16px 基准) ----------
   // 计算规则：目标 px ÷ 16 = rem 值
   // 保持浏览器默认 16px，兼容 Tailwind
-  --font-2xs: 0.625rem;    // 10px - 极小文字（标签、徽章）
-  --font-xs: 0.75rem;      // 12px - 小文字（辅助信息、时间戳）
-  --font-sm: 0.8125rem;    // 13px - 次要文字（描述、说明）
-  --font-base: 0.875rem;   // 14px - 正文基础大小
-  --font-md: 0.9375rem;    // 15px - 中等文字
-  --font-lg: 1rem;         // 16px - 大文字（小标题）
-  --font-xl: 1.125rem;     // 18px - 特大文字（标题）
-  --font-2xl: 1.25rem;     // 20px - 二级标题
-  --font-3xl: 1.5rem;      // 24px - 一级标题
-  --font-4xl: 1.75rem;     // 28px - 大标题
-  --font-5xl: 2rem;        // 32px - 特大标题
+  --font-2xs: 0.625rem; // 10px - 极小文字（标签、徽章）
+  --font-xs: 0.75rem; // 12px - 小文字（辅助信息、时间戳）
+  --font-sm: 0.8125rem; // 13px - 次要文字（描述、说明）
+  --font-base: 0.875rem; // 14px - 正文基础大小
+  --font-md: 0.9375rem; // 15px - 中等文字
+  --font-lg: 1rem; // 16px - 大文字（小标题）
+  --font-xl: 1.125rem; // 18px - 特大文字（标题）
+  --font-2xl: 1.25rem; // 20px - 二级标题
+  --font-3xl: 1.5rem; // 24px - 一级标题
+  --font-4xl: 1.75rem; // 28px - 大标题
+  --font-5xl: 2rem; // 32px - 特大标题
 
   // 数字/统计专用（移动端）
-  --font-stat-sm: 1.125rem;   // 18px - 小统计数字
-  --font-stat-md: 1.5rem;     // 24px - 中统计数字
-  --font-stat-lg: 2rem;       // 32px - 大统计数字
+  --font-stat-sm: 1.125rem; // 18px - 小统计数字
+  --font-stat-md: 1.5rem; // 24px - 中统计数字
+  --font-stat-lg: 2rem; // 32px - 大统计数字
 }
 
 // ============================================
@@ -174,9 +174,9 @@
 @media (min-width: 768px) {
   :root {
     // 统计数字在桌面端放大
-    --font-stat-sm: 1.5rem;    // 24px
-    --font-stat-md: 2rem;      // 32px
-    --font-stat-lg: 2.5rem;    // 40px
+    --font-stat-sm: 1.5rem; // 24px
+    --font-stat-md: 2rem; // 32px
+    --font-stat-lg: 2.5rem; // 40px
   }
 }
 
@@ -201,12 +201,12 @@
 
   // ---------- 边框色 (核心：使用半透明白色，更有玻璃感) ----------
   --border-light: rgba(255, 255, 255, 0.06); // 极细的分割线
-  --border-default: #191a1d ; // 较明显的边框
+  --border-default: #191a1d; // 较明显的边框
 
   // ---------- 文字色 (使用 Zinc/Slate 色系，减少视觉疲劳) ----------
   --text-heading: #ffffff; // 纯白标题
-  --text-primary: #F9FBFC ; // 主要正文 (Zinc-200)
-  --text-secondary: #B6BBC2; // 次要文字 (Zinc-400)
+  --text-primary: #f9fbfc; // 主要正文 (Zinc-200)
+  --text-secondary: #b6bbc2; // 次要文字 (Zinc-400)
   --text-muted: #71717a; // 辅助/图标 (Zinc-500)
   --text-placeholder: #52525b; // 占位符
   --text-disabled: #3f3f46; // 禁用文字
@@ -245,7 +245,7 @@
   --color-danger-dark: #ef4444;
 
   // 金额/价格色（金黄色，暗色模式保持一致）
-  --color-price: #FFCD77;
+  --color-price: #ffcd77;
 
   // ---------- 交互状态色 ----------
   --interactive-default: #1c1c21;
@@ -284,23 +284,23 @@
   // ---------- 工作流编辑器标签色（暗色模式） ----------
   // 博主标签
   --tag-blogger-bg: rgba(59, 130, 246, 0.2);
-  --tag-blogger-text: #93C5FD;
+  --tag-blogger-text: #93c5fd;
   // 模板标签
   --tag-template-bg: rgba(59, 130, 246, 0.2);
-  --tag-template-text: #93C5FD;
+  --tag-template-text: #93c5fd;
   // 音色标签
   --tag-audio-bg: rgba(14, 165, 233, 0.2);
-  --tag-audio-text: #7DD3FC;
+  --tag-audio-text: #7dd3fc;
   // 数字人标签
   --tag-video-bg: rgba(245, 158, 11, 0.2);
-  --tag-video-text: #FCD34D;
+  --tag-video-text: #fcd34d;
   // 前置节点标签
   --tag-predecessor-bg: rgba(59, 130, 246, 0.2);
-  --tag-predecessor-text: #93C5FD;
+  --tag-predecessor-text: #93c5fd;
   // 输入框标签
   --tag-input-bg: rgba(59, 130, 246, 0.2);
-  --tag-input-text: #93C5FD;
+  --tag-input-text: #93c5fd;
   // 选择中标签（@触发）
   --tag-mention-bg: rgba(107, 114, 128, 0.3);
-  --tag-mention-text: #9CA3AF;
+  --tag-mention-text: #9ca3af;
 }

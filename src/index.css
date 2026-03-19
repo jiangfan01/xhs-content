@@ -63,7 +63,7 @@
   --color-danger-light: #fee2e2;
   --color-danger: #dc2626;
   --color-danger-dark: #b91c1c;
-  --color-price: #FFCD77;
+  --color-price: #ffcd77;
 
   /* ---------- 交互状态色 ---------- */
   --interactive-default: #f3f4f6;
@@ -93,20 +93,20 @@
   --shine-color-medium: rgba(255, 255, 255, 0.6);
 
   /* ---------- 工作流编辑器标签色 ---------- */
-  --tag-blogger-bg: #D7E5FF;
-  --tag-blogger-text: #1E40AF;
-  --tag-template-bg: #D7E5FF;
-  --tag-template-text: #1E40AF;
-  --tag-audio-bg: #E0F2FE;
-  --tag-audio-text: #0369A1;
-  --tag-video-bg: #FEF3C7;
-  --tag-video-text: #92400E;
-  --tag-predecessor-bg: #D7E5FF;
-  --tag-predecessor-text: #1E40AF;
-  --tag-input-bg: #D7E5FF;
-  --tag-input-text: #1E40AF;
-  --tag-mention-bg: #E5E7EB;
-  --tag-mention-text: #6B7280;
+  --tag-blogger-bg: #d7e5ff;
+  --tag-blogger-text: #1e40af;
+  --tag-template-bg: #d7e5ff;
+  --tag-template-text: #1e40af;
+  --tag-audio-bg: #e0f2fe;
+  --tag-audio-text: #0369a1;
+  --tag-video-bg: #fef3c7;
+  --tag-video-text: #92400e;
+  --tag-predecessor-bg: #d7e5ff;
+  --tag-predecessor-text: #1e40af;
+  --tag-input-bg: #d7e5ff;
+  --tag-input-text: #1e40af;
+  --tag-mention-bg: #e5e7eb;
+  --tag-mention-text: #6b7280;
 
   /* ---------- 圆角 ---------- */
   --radius-sm: 4px;
@@ -165,8 +165,8 @@
   --border-default: #191a1d;
 
   --text-heading: #ffffff;
-  --text-primary: #F9FBFC;
-  --text-secondary: #B6BBC2;
+  --text-primary: #f9fbfc;
+  --text-secondary: #b6bbc2;
   --text-muted: #71717a;
   --text-placeholder: #52525b;
   --text-disabled: #3f3f46;
@@ -197,7 +197,7 @@
   --color-danger-light: rgba(248, 113, 113, 0.1);
   --color-danger: #f87171;
   --color-danger-dark: #ef4444;
-  --color-price: #FFCD77;
+  --color-price: #ffcd77;
 
   --interactive-default: #1c1c21;
   --interactive-hover: #27272e;
@@ -224,19 +224,19 @@
   --shine-color-medium: rgba(139, 92, 246, 0.25);
 
   --tag-blogger-bg: rgba(59, 130, 246, 0.2);
-  --tag-blogger-text: #93C5FD;
+  --tag-blogger-text: #93c5fd;
   --tag-template-bg: rgba(59, 130, 246, 0.2);
-  --tag-template-text: #93C5FD;
+  --tag-template-text: #93c5fd;
   --tag-audio-bg: rgba(14, 165, 233, 0.2);
-  --tag-audio-text: #7DD3FC;
+  --tag-audio-text: #7dd3fc;
   --tag-video-bg: rgba(245, 158, 11, 0.2);
-  --tag-video-text: #FCD34D;
+  --tag-video-text: #fcd34d;
   --tag-predecessor-bg: rgba(59, 130, 246, 0.2);
-  --tag-predecessor-text: #93C5FD;
+  --tag-predecessor-text: #93c5fd;
   --tag-input-bg: rgba(59, 130, 246, 0.2);
-  --tag-input-text: #93C5FD;
+  --tag-input-text: #93c5fd;
   --tag-mention-bg: rgba(107, 114, 128, 0.3);
-  --tag-mention-text: #9CA3AF;
+  --tag-mention-text: #9ca3af;
 }
 
 /* ============================================
@@ -247,10 +247,17 @@ body {
   background-color: var(--bg-default);
   color: var(--text-primary);
   font-size: var(--font-base);
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color var(--transition-normal), color var(--transition-normal);
+  transition:
+    background-color var(--transition-normal),
+    color var(--transition-normal);
 }
 
 /* 自定义滚动条 */
