@@ -7,6 +7,7 @@ on:
 
 env:
   NODE_VERSION: "22"
+  PNPM_VERSION: "9"
 
 jobs:
   build-and-deploy:
@@ -21,11 +22,17 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build project
-        run: npm run build:test
+        run: pnpm run build:test
 
       - name: Archive build files
         run: |
