@@ -1,0 +1,109 @@
+name: 部署测试服务器
+
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: "22"
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build:test
+
+      - name: Archive build files
+        run: |
+          cd dist
+          tar -czf ../build.tar.gz .
+          cd ..
+          echo "✅ 打包完成 ($(ls -lh build.tar.gz | awk '{print $5}'))"
+
+      - name: Upload build file
+        run: |
+          echo "${{ secrets.SERVER_SSH_KEY }}" > /tmp/ssh_key
+          chmod 600 /tmp/ssh_key
+          scp -i /tmp/ssh_key \
+              -o StrictHostKeyChecking=no \
+              -P ${{ secrets.SERVER_PORT }} \
+              build.tar.gz \
+              ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/
+          rm -f /tmp/ssh_key
+
+      - name: Deploy on server
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            echo "🚀 开始部署 xhs-content 测试环境..."
+
+            DEPLOY_ROOT="/www/wwwroot/xhscontent-test.24.city"
+            VERSION="${{ github.sha }}"
+            TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+
+            # 备份 index.html
+            if [ -f "${DEPLOY_ROOT}/index.html" ]; then
+              sudo cp ${DEPLOY_ROOT}/index.html ${DEPLOY_ROOT}/index_backup.html
+            fi
+
+            # 解压新产物
+            sudo rm -rf /tmp/deploy_xhs_temp
+            sudo mkdir -p /tmp/deploy_xhs_temp
+            sudo tar -xzf /tmp/build.tar.gz -C /tmp/deploy_xhs_temp --no-same-owner
+
+            # 同步静态资源（增量）
+            sudo mkdir -p ${DEPLOY_ROOT}/assets
+            if [ -d "/tmp/deploy_xhs_temp/assets" ]; then
+              sudo cp -r /tmp/deploy_xhs_temp/assets/* ${DEPLOY_ROOT}/assets/
+            fi
+
+            # 更新根目录文件
+            for file in /tmp/deploy_xhs_temp/*; do
+              if [ -f "$file" ]; then
+                sudo cp "$file" ${DEPLOY_ROOT}/
+              fi
+            done
+
+            # 清理 7 天前旧资源
+            sudo find ${DEPLOY_ROOT}/assets -type f -mtime +7 -delete 2>/dev/null || true
+
+            # 记录版本
+            echo "${VERSION}" | sudo tee ${DEPLOY_ROOT}/VERSION > /dev/null
+            echo "${TIMESTAMP}" | sudo tee ${DEPLOY_ROOT}/DEPLOY_TIME > /dev/null
+
+            # 权限
+            sudo chown -R www:www ${DEPLOY_ROOT}
+            sudo chmod -R 755 ${DEPLOY_ROOT}
+
+            # 清理
+            sudo rm -rf /tmp/deploy_xhs_temp /tmp/build.tar.gz
+
+            echo "🎉 部署成功！版本: ${VERSION:0:7} @ ${TIMESTAMP}"
+
+      - name: Deployment Success
+        if: success()
+        run: |
+          echo "🎉 xhs-content 测试环境部署成功！"
+          echo "🔗 访问: http://xhscontent-test.24.city"
+
+      - name: Deployment Failure
+        if: failure()
+        run: echo "❌ 部署失败，请检查日志"
