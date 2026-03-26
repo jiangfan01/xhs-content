@@ -4,6 +4,7 @@ import WorkspaceLayout from "~/layouts/WorkspaceLayout";
 import CollectionPage from "~/pages/Collection";
 import GenerationPage from "~/pages/Generation";
 import HomePage from "~/pages/Home";
+import KeywordCollectionPage from "~/pages/KeywordCollection";
 import LoginPage from "~/pages/Login";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       >
         <Route index element={<Navigate to="/workspace/collection" replace />} />
         <Route path="collection" element={<CollectionPage />} />
+        <Route path="keyword-collection" element={<KeywordCollectionPage />} />
         <Route path="generation" element={<GenerationPage />} />
       </Route>
     </Routes>

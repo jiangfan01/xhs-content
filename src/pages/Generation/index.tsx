@@ -70,6 +70,7 @@ interface SetupDraft {
   referenceAssets: ReferenceAssetDraft[];
   assetNote: string;
   coreExpressions: string[];
+  specifiedTags: string[];
   forbiddenTerms: string[];
 }
 
@@ -78,9 +79,12 @@ interface SettingsDraft {
   projectStatus: ProjectStatus;
   creativeTheme: string;
   coreExpressions: string[];
+  specifiedTags: string[];
   forbiddenTerms: string[];
   generateIntervalMin: string;
 }
+
+type RuleListField = "coreExpressions" | "specifiedTags" | "forbiddenTerms";
 
 interface ReferenceAssetDraft {
   localId: string;
@@ -241,6 +245,7 @@ const initialSetupDraft: SetupDraft = {
   assetNote:
     "例如：前 2 张是功能截图，第 3 张是活动权益海报，第 4 张以后更适合做正文配图。",
   coreExpressions: ["立即下载应用", "内容见评论区"],
+  specifiedTags: [],
   forbiddenTerms: ["最强", "全网第一"],
 };
 
@@ -377,6 +382,7 @@ function createSettingsDraft(
   project: ProjectListItem,
   creativeTheme: string | undefined,
   coreExpressions: string[] | undefined,
+  specifiedTags: string[] | undefined,
   forbiddenTerms: string[] | undefined,
   generateIntervalMin: string | number | undefined,
 ): SettingsDraft {
@@ -385,6 +391,7 @@ function createSettingsDraft(
     projectStatus: project.status,
     creativeTheme: creativeTheme?.trim() ?? "",
     coreExpressions: normalizeRuleItems(coreExpressions ?? []),
+    specifiedTags: normalizeRuleItems(specifiedTags ?? []),
     forbiddenTerms: normalizeRuleItems(forbiddenTerms ?? []),
     generateIntervalMin: normalizeGenerateIntervalValue(generateIntervalMin),
   };
@@ -839,13 +846,17 @@ export default function GenerationPage() {
     projectStatus: "paused",
     creativeTheme: "",
     coreExpressions: [],
+    specifiedTags: [],
     forbiddenTerms: [],
     generateIntervalMin: "60",
   });
   const [wizardCoreExpressionInput, setWizardCoreExpressionInput] =
     useState("");
+  const [wizardSpecifiedTagInput, setWizardSpecifiedTagInput] = useState("");
   const [wizardForbiddenTermInput, setWizardForbiddenTermInput] = useState("");
   const [settingsCoreExpressionInput, setSettingsCoreExpressionInput] =
+    useState("");
+  const [settingsSpecifiedTagInput, setSettingsSpecifiedTagInput] =
     useState("");
   const [settingsForbiddenTermInput, setSettingsForbiddenTermInput] =
     useState("");
@@ -915,6 +926,10 @@ export default function GenerationPage() {
   const configCoreExpressions =
     projectDetailQuery.data?.config?.core_expressions ??
     selectedProject?.config?.core_expressions ??
+    [];
+  const configSpecifiedTags =
+    projectDetailQuery.data?.config?.specified_tags ??
+    selectedProject?.config?.specified_tags ??
     [];
   const configForbiddenTerms =
     projectDetailQuery.data?.config?.forbidden_terms ??
@@ -1104,6 +1119,7 @@ export default function GenerationPage() {
     setBriefUploadedUrl("");
     setSetupDraft(initialSetupDraft);
     setWizardCoreExpressionInput("");
+    setWizardSpecifiedTagInput("");
     setWizardForbiddenTermInput("");
     setIsWizardOpen(true);
   };
@@ -1114,6 +1130,7 @@ export default function GenerationPage() {
     setBriefUploadedUrl("");
     setSetupDraft(initialSetupDraft);
     setWizardCoreExpressionInput("");
+    setWizardSpecifiedTagInput("");
     setWizardForbiddenTermInput("");
     if (wizardReferenceFileRef.current) {
       wizardReferenceFileRef.current.value = "";
@@ -1128,6 +1145,7 @@ export default function GenerationPage() {
     setIsEditingProjectName(false);
     setActiveSettingsSection("runtime");
     setSettingsCoreExpressionInput("");
+    setSettingsSpecifiedTagInput("");
     setSettingsForbiddenTermInput("");
     setSettingsReferenceAssets([]);
     settingsReferenceAssetsRef.current = [];
@@ -1164,6 +1182,7 @@ export default function GenerationPage() {
         selectedProject,
         creativeTheme,
         configCoreExpressions,
+        configSpecifiedTags,
         configForbiddenTerms,
         generateIntervalMin,
       ),
@@ -1174,6 +1193,7 @@ export default function GenerationPage() {
     );
     hydrateSettingsReferenceAssets(hydratedAssets);
     setSettingsCoreExpressionInput("");
+    setSettingsSpecifiedTagInput("");
     setSettingsForbiddenTermInput("");
     setActiveSettingsSection("runtime");
     setIsSettingsOpen(true);
@@ -1222,7 +1242,7 @@ export default function GenerationPage() {
   };
 
   const addWizardRuleItem = (
-    key: "coreExpressions" | "forbiddenTerms",
+    key: RuleListField,
     inputValue: string,
     clearInput: () => void,
   ) => {
@@ -1238,10 +1258,7 @@ export default function GenerationPage() {
     clearInput();
   };
 
-  const removeWizardRuleItem = (
-    key: "coreExpressions" | "forbiddenTerms",
-    value: string,
-  ) => {
+  const removeWizardRuleItem = (key: RuleListField, value: string) => {
     setSetupDraft((current) => ({
       ...current,
       [key]: current[key].filter((item) => item !== value),
@@ -1249,7 +1266,7 @@ export default function GenerationPage() {
   };
 
   const addSettingsRuleItem = (
-    key: "coreExpressions" | "forbiddenTerms",
+    key: RuleListField,
     inputValue: string,
     clearInput: () => void,
   ) => {
@@ -1265,10 +1282,7 @@ export default function GenerationPage() {
     clearInput();
   };
 
-  const removeSettingsRuleItem = (
-    key: "coreExpressions" | "forbiddenTerms",
-    value: string,
-  ) => {
+  const removeSettingsRuleItem = (key: RuleListField, value: string) => {
     setSettingsDraft((current) => ({
       ...current,
       [key]: current[key].filter((item) => item !== value),
@@ -1479,6 +1493,7 @@ export default function GenerationPage() {
     await updateProjectConfigMutation.mutateAsync({
       project_id: selectedProjectId,
       core_expressions: normalizeRuleItems(settingsDraft.coreExpressions),
+      specified_tags: normalizeRuleItems(settingsDraft.specifiedTags),
       forbidden_terms: normalizeRuleItems(settingsDraft.forbiddenTerms),
     });
 
@@ -1551,6 +1566,7 @@ export default function GenerationPage() {
       const pendingCoreExpressions = normalizeRuleItems(
         setupDraft.coreExpressions,
       );
+      const pendingSpecifiedTags = normalizeRuleItems(setupDraft.specifiedTags);
       const pendingForbiddenTerms = normalizeRuleItems(
         setupDraft.forbiddenTerms,
       );
@@ -1586,11 +1602,13 @@ export default function GenerationPage() {
 
       if (
         pendingCoreExpressions.length > 0 ||
+        pendingSpecifiedTags.length > 0 ||
         pendingForbiddenTerms.length > 0
       ) {
         await updateProjectConfigMutation.mutateAsync({
           project_id: project.id,
           core_expressions: pendingCoreExpressions,
+          specified_tags: pendingSpecifiedTags,
           forbidden_terms: pendingForbiddenTerms,
         });
       }
@@ -2431,6 +2449,26 @@ export default function GenerationPage() {
                     />
 
                     <RuleListEditor
+                      label="指定 Tags"
+                      placeholder="例如：机械键盘、桌搭分享、办公效率"
+                      suggestions={[]}
+                      values={setupDraft.specifiedTags}
+                      inputValue={wizardSpecifiedTagInput}
+                      onInputChange={setWizardSpecifiedTagInput}
+                      onAdd={() =>
+                        addWizardRuleItem(
+                          "specifiedTags",
+                          wizardSpecifiedTagInput,
+                          () => setWizardSpecifiedTagInput(""),
+                        )
+                      }
+                      onSuggestionClick={() => {}}
+                      onRemove={(value) =>
+                        removeWizardRuleItem("specifiedTags", value)
+                      }
+                    />
+
+                    <RuleListEditor
                       label="违禁词"
                       placeholder="例如：最强、全网第一、保证有效"
                       suggestions={forbiddenTermSuggestions}
@@ -2511,6 +2549,7 @@ export default function GenerationPage() {
                         <div>
                           <strong>
                             表达规则 {setupDraft.coreExpressions.length} 条 /
+                            指定 Tags {setupDraft.specifiedTags.length} 条 /
                             违禁词 {setupDraft.forbiddenTerms.length} 条
                           </strong>
                           <p>创建完成后会保存到项目配置，并参与后续生成。</p>
@@ -3081,7 +3120,10 @@ export default function GenerationPage() {
                       <header className="generation-settings-panel__header">
                         <div>
                           <h3>表达规则</h3>
-                          <p>逐条维护核心表达和违禁词，保存后写入项目配置。</p>
+                          <p>
+                            逐条维护核心表达、指定 Tags 和违禁词。指定 Tags
+                            会在生成时强制使用，并排在最前面。
+                          </p>
                         </div>
                       </header>
 
@@ -3109,6 +3151,26 @@ export default function GenerationPage() {
                           }
                           onRemove={(value) =>
                             removeSettingsRuleItem("coreExpressions", value)
+                          }
+                        />
+
+                        <RuleListEditor
+                          label="指定 Tags"
+                          placeholder="例如：机械键盘、桌搭分享、办公效率"
+                          suggestions={[]}
+                          values={settingsDraft.specifiedTags}
+                          inputValue={settingsSpecifiedTagInput}
+                          onInputChange={setSettingsSpecifiedTagInput}
+                          onAdd={() =>
+                            addSettingsRuleItem(
+                              "specifiedTags",
+                              settingsSpecifiedTagInput,
+                              () => setSettingsSpecifiedTagInput(""),
+                            )
+                          }
+                          onSuggestionClick={() => {}}
+                          onRemove={(value) =>
+                            removeSettingsRuleItem("specifiedTags", value)
                           }
                         />
 

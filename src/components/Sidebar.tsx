@@ -1,4 +1,4 @@
-import { Bot, Library } from "lucide-react";
+import { Bot, Library, SearchCode } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const navItems = [
@@ -7,6 +7,12 @@ const navItems = [
     path: "/workspace/collection",
     icon: Library,
     description: "采集任务、笔记池、素材分组",
+  },
+  {
+    label: "关键词采集",
+    path: "/workspace/keyword-collection",
+    icon: SearchCode,
+    description: "公共关键词库、tab 结果、共享笔记池",
   },
   {
     label: "内容生成",

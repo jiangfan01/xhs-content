@@ -16,6 +16,7 @@ export interface ProjectConfig {
   project_id: number;
   creative_theme: string;
   core_expressions: string[];
+  specified_tags: string[];
   forbidden_terms: string[];
   brief_url: string;
   brief_content: string;
@@ -123,6 +124,7 @@ export interface UpdateProjectConfigPayload {
   project_id: number;
   creative_theme?: string;
   core_expressions?: string[];
+  specified_tags?: string[];
   forbidden_terms?: string[];
   cron_expr?: string;
 }
