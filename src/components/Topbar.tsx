@@ -13,7 +13,7 @@ export default function Topbar() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 h-16 border-b border-[var(--border-light)] bg-[var(--bg-default)] shadow-[0_1px_0_rgba(15,23,42,0.04)]">
+    <header className="fixed inset-x-0 top-0 z-40 h-16 border-b border-[var(--border-light)] bg-[var(--bg-elevated)] shadow-[0_1px_0_rgba(102,56,41,0.06)]">
       <div className="flex h-full items-center justify-between px-4 lg:pl-6 lg:pr-6">
         <div className="flex min-w-0 items-center gap-3">
           <Link
@@ -40,7 +40,7 @@ export default function Topbar() {
         <div className="flex items-center gap-2 md:gap-3">
           <Link
             to="/"
-            className="hidden items-center gap-1 rounded-md border border-[var(--border-light)] bg-white px-3 py-2 text-[13px] font-medium text-[var(--text-secondary)] no-underline hover:text-[var(--text-heading)] lg:inline-flex"
+            className="hidden items-center gap-1 rounded-md border border-[var(--border-light)] bg-[var(--bg-card)] px-3 py-2 text-[13px] font-medium text-[var(--text-secondary)] no-underline hover:bg-[var(--interactive-hover)] hover:text-[var(--text-heading)] lg:inline-flex"
           >
             产品首页
             <ArrowUpRight size={14} />
@@ -48,7 +48,7 @@ export default function Topbar() {
 
           <ThemeToggle />
 
-          <div className="flex items-center gap-2 rounded-md border border-[var(--border-light)] bg-white px-2 py-1.5">
+          <div className="flex items-center gap-2 rounded-md border border-[var(--border-light)] bg-[var(--bg-card)] px-2 py-1.5">
             {user?.avatar ? (
               <img
                 src={user.avatar}
@@ -70,7 +70,7 @@ export default function Topbar() {
 
           <button
             onClick={handleLogout}
-            className="flex cursor-pointer items-center gap-1.5 rounded-md border border-[var(--border-light)] bg-white px-3 py-2 text-[13px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-heading)]"
+            className="flex cursor-pointer items-center gap-1.5 rounded-md border border-[var(--border-light)] bg-[var(--bg-card)] px-3 py-2 text-[13px] font-medium text-[var(--text-secondary)] hover:bg-[var(--interactive-hover)] hover:text-[var(--text-heading)]"
           >
             <LogOut size={15} />
             退出

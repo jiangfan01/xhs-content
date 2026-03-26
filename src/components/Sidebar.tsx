@@ -43,7 +43,7 @@ export default function Sidebar() {
                 }`
               }
             >
-              <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[var(--border-light)] bg-white">
+              <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[var(--border-light)] bg-[var(--bg-card)]">
                 <item.icon size={18} />
               </span>
               <span className="min-w-0">
